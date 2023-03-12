@@ -8,7 +8,7 @@ import CartProvider from './CartContext';
 import {Container} from 'react-bootstrap'
 import Footer from './components/Footer';
 import NavbarComponent from './components/NavBar';
-//import ProducdCard from './components/ProductCard';
+import ProductPage from './pages/ProductPage'
 import Store from './pages/Store';
 import Success from './pages/Success';
 
@@ -22,9 +22,10 @@ function App() {
       <Route index element={<Store/>} />
       <Route path='success' element={<Success/>} />
       <Route path='cancel' element={<Cancel/>} />
+      <Route path='/products/:productId' element={<ProductPage/>} />
      </Routes>
      </BrowserRouter>
-     <Footer/>
+     <Footer/>  
    </Container>
   </CartProvider>
 
@@ -32,3 +33,6 @@ function App() {
 }
 
 export default App;
+
+
+//      <Route path='products/:productId' element={<ProductPage/>} />
