@@ -5,10 +5,18 @@ import {React, useContext} from 'react'
 
 import { CartContext } from '../CartContext'
 import CartProduct from './CartProduct'
+import ClientForm from './ClientForm'
 import { useState } from 'react'
 
 const NavbarComponent=()=>{
+
    const cart=useContext(CartContext);
+  
+   const [currentStep, setCurrentStep] = useState(1);
+
+   function handleContinueClick() {
+     setCurrentStep(2);
+   }
 
    const [show, setShow]=useState(false);
    const handleClose=()=>{
@@ -19,26 +27,7 @@ const NavbarComponent=()=>{
    }
    
    const productCount=cart.items.reduce((accum, curr)=>accum+curr.quantity,0)
-
-   const handleCheckout= async()=>{
-   const url = 'https://pine-miniature-wish.glitch.me/checkout';
-   //   const url='https://localhost:3003/checkout';
-      await fetch(url, {
-         method: 'POST',
-         headers: {
-            'Content-Type':'application/json'
-         },
-         body:JSON.stringify({
-            items:cart.items
-         })
-      }).then((response)=>{
-         return response.json();
-      }).then((response)=>{
-         if (response.url) {
-            window.location.assign(response.url);
-         }
-      })
-   }
+// pass handle checkout as props functions other module exercise
    return (
       <>
       <Navbar expand='sm'>
@@ -54,21 +43,16 @@ const NavbarComponent=()=>{
          <Navbar.Toggle/>
          <Navbar.Collapse className='justify-content-end'>
          <Nav className="mr-auto">
-          <Nav.Link href="" className='nav-link'>Shoes</Nav.Link>
-          <Nav.Link href="#" className='nav-link'>Clothing</Nav.Link>
-          <Nav.Link href="#" className='nav-link'>Sports</Nav.Link>
-          <Nav.Link href="#" className='nav-link'>Technology</Nav.Link>
-          <Nav.Link href="#" className='nav-link'>Accessories</Nav.Link>
-          <Nav.Link href="#" className='nav-link'>Bags</Nav.Link>
-          <Nav.Link href="#" className='nav-link'>Contact</Nav.Link>
-        </Nav>
-
-            
-            <Button  style={{ marginLeft: '170px' }}  onClick={HandleShow}>Cart with {productCount} Items</Button>
-
+         <Nav.Link href="/" className='nav-link'>Buy Now</Nav.Link>
+         <Nav.Link href="/about-us" className='nav-link'>About Us</Nav.Link>
+         <Nav.Link href="/contact" className='nav-link'>Contact</Nav.Link>
+         </Nav>
+      <Button  style={{ marginLeft: '80px' }}  onClick={HandleShow}>Cart with {productCount} Items</Button>
          </Navbar.Collapse>
       </Navbar>
-      <Modal show={show} onHide={handleClose} >
+
+
+        {currentStep===1 && (<Modal show={show} onHide={handleClose} >
          <Modal.Header closeButton>
             <Modal.Title></Modal.Title>
             <Modal.Body>
@@ -79,18 +63,27 @@ const NavbarComponent=()=>{
                   <CartProduct key={index} id={currProduct.id} quantity={currProduct.quantity}></CartProduct>
                ))}
                <h1>Total: {cart.getTotalCost().toFixed(2)}</h1>
-               <Button variant='success' onClick={handleCheckout}>Purchase</Button>
+               <Button variant='success' onClick={handleContinueClick}>Continue with Purchase</Button>
                </>
                :
                <h1>No products in your cart</h1>
                
             }
                </Modal.Body>
-
          </Modal.Header>
-
-
+      </Modal>)}
+      {currentStep === 2 && (<Modal show={show} onHide={handleClose} >
+         <Modal.Header closeButton>
+            <Modal.Title></Modal.Title>
+            <Modal.Body>
+            { productCount>0 ? <ClientForm/>:
+            <>
+            </>
+            }
+               </Modal.Body>
+         </Modal.Header>
       </Modal>
+      )}
       </>
       
    )

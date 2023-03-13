@@ -1,15 +1,8 @@
-import {Button, Card, Col, Form, Row} from 'react-bootstrap';
+import {Button, Card} from 'react-bootstrap';
 
-import { CartContext } from '../CartContext';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
 
 const ProductCard = ({product, categoryFilter}) => { 
-
-
-   const cart=useContext(CartContext);
-   const productQuantity=cart.getProductQuantity(product.id);
-
    return (
       <>
       {(categoryFilter==='all' || categoryFilter === product.category) && (
