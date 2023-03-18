@@ -7,3 +7,9 @@
  .container {
   margin-top: 1px; /* adjust this value to your preference */
 }
+@media (max-width: 768px) {
+  .btn {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+}

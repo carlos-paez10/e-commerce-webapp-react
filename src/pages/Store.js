@@ -1,4 +1,6 @@
-import {Button, Col, Row} from 'react-bootstrap'
+import '../styles/styles.css'
+
+import {Button, Col, Container, Row} from 'react-bootstrap'
 import { compareObjects, productsArray } from '../productsStore';
 
 import ProductCard from '../components/ProductCard';
@@ -42,6 +44,7 @@ const filteredProducts = productsArray.filter((product) => {
 
    return (
    <>
+   <Container>
    <h1 align='center'  className='p-3'>Welcome to the store</h1>
    <div className="d-flex justify-content-center mb-3">
         <Button
@@ -59,18 +62,25 @@ const filteredProducts = productsArray.filter((product) => {
           Fashion
         </Button>
         <Button
-          variant={categoryFilter === 'personal' ? 'primary' : 'secondary'}
-          className="mx-2"
-          onClick={() => handleCategoryFilter('personal')}
-        >
-          Personal
-        </Button>
-        <Button
           variant={categoryFilter === 'sports' ? 'primary' : 'secondary'}
           className="mx-2"
           onClick={() => handleCategoryFilter('sports')}
         >
           Sports
+        </Button>
+        <Button
+          variant={categoryFilter === 'electronics' ? 'primary' : 'secondary'}
+          className="mx-2"
+          onClick={() => handleCategoryFilter('electronics')}
+        >
+          Electronics
+        </Button>
+        <Button
+          variant={categoryFilter === 'home' ? 'primary' : 'secondary'}
+          className="mx-2"
+          onClick={() => handleCategoryFilter('home')}
+        >
+          Home
         </Button>
       </div>
 
@@ -94,10 +104,10 @@ const filteredProducts = productsArray.filter((product) => {
           $50 - $100
         </Button>
         <Button
-          variant={compareObjects(priceFilter,{min: 100, max: 200}) ? 'primary' : 'secondary'}
+          variant={compareObjects(priceFilter,{min: 100, max: 300}) ? 'primary' : 'secondary'}
           className='mx-2'
-          onClick={() => handlePriceFilter({ min: 100, max: 200 })}>
-          $100 - $200
+          onClick={() => handlePriceFilter({ min: 100, max: 300 })}>
+          $100 - $300
         </Button>
       </div>
    <Row xs={1} md={3} className='g-4'>
@@ -108,6 +118,7 @@ const filteredProducts = productsArray.filter((product) => {
        )
      )}
    </Row>
+   </Container>
    </>
    
    ); 

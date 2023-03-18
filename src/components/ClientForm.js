@@ -1,5 +1,3 @@
-import '../styles/shippingForm.css'
-
 import * as Yup from "yup";
 
 import { Button, Form } from "react-bootstrap";

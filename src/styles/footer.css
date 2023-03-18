@@ -53,6 +53,12 @@
  .social-icons a {
    margin-right: 30px;
  }
+ @media (max-width: 768px) {
+  .btn {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+}
 
  
  

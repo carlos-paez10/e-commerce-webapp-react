@@ -11,7 +11,7 @@ const productsArray=[
    "id": "price_1MbZQMIFcedB1lSScqOm3FiD",   
    "title": "Water Bottle",  
    "price": 9.99, 
-   "category": 'personal',     
+   "category": 'sports',     
    "image": "https://contents.mediadecathlon.com/p2201854/k$a8f48801ca4ce6dc42882b2bd8505024/cantimplora-1-l-aluminio-reciclado-tapa-apertura-rapida-senderismo-mh500-azul.jpg?&f=800x800" 
 }, 
 {  
