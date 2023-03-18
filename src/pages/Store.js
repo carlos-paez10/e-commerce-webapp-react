@@ -1,7 +1,7 @@
 import {Button, Col, Row} from 'react-bootstrap'
+import { compareObjects, productsArray } from '../productsStore';
 
 import ProductCard from '../components/ProductCard';
-import { productsArray } from '../productsStore';
 import { useState } from 'react';
 
 const Store = () => {
@@ -82,19 +82,19 @@ const filteredProducts = productsArray.filter((product) => {
           All Prices
         </Button>
         <Button
-          variant={priceFilter === '0-50' ? 'primary' : 'secondary'}
+          variant={compareObjects(priceFilter,{min: 0, max: 50}) ? 'primary' : 'secondary'}
           className='mx-2'
           onClick={() => handlePriceFilter({ min: 0, max: 50 })}>
           $0 - $50
         </Button>
         <Button
-          variant={priceFilter === '50-100' ? 'primary' : 'secondary'}
+          variant={compareObjects(priceFilter,{min: 50, max: 100}) ? 'primary' : 'secondary'}
           className='mx-2'
           onClick={() => handlePriceFilter({ min: 50, max: 100 })}>
           $50 - $100
         </Button>
         <Button
-          variant={priceFilter === '100-200' ? 'primary' : 'secondary'}
+          variant={compareObjects(priceFilter,{min: 100, max: 200}) ? 'primary' : 'secondary'}
           className='mx-2'
           onClick={() => handlePriceFilter({ min: 100, max: 200 })}>
           $100 - $200

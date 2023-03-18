@@ -3,9 +3,11 @@ import {Button, Card, Col, Form, Row} from 'react-bootstrap';
 import { CartContext } from '../CartContext';
 import { productsArray } from '../productsStore';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 const ProductPage = () => {
+  const Navigate=useNavigate();
   const cart=useContext(CartContext);
   const { productId } = useParams();
   const productQuantity=cart.getProductQuantity(productId);
@@ -17,11 +19,12 @@ const ProductPage = () => {
   }
 
   return (
-  <Card>
+  <Card style={{ maxWidth: '700px', margin: '0 auto'}}>
     <Card.Body>
-      <Card.Img variant='top' src={product.image} className='img-fluid' width='400'></Card.Img>
+      <Card.Img variant='top' src={product.image} className='img-fluid' width='50'></Card.Img>
       <Card.Title>{product.title} </Card.Title>
       <Card.Text> ${product.price}</Card.Text>
+      <Button style={{marginRight:36}}variant='primary'  onClick={() => Navigate('/')}>Back to Store</Button>
 
 
       {productQuantity>0 ? 
