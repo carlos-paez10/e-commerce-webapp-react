@@ -19,7 +19,7 @@ function App() {
  <CartProvider>
    <Container >
      <NavbarComponent> </NavbarComponent>
-     <BrowserRouter>
+     <BrowserRouter  basename={process.env.PUBLIC_URL}>
      <Routes>
       <Route index element={<Store/>} />
       <Route path='/success' element={<Success/>} />
